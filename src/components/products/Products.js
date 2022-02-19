@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Preloader from '../preloader/Preloader';
 import Product from './Product';
-const Products = () => {
+const Products = ({searchProducts}) => {
     const [products, setProducts]=useState([]);
     const [loading, setLoading]=useState(false);
     const [filterData, setFilterData]=useState(products);
@@ -58,7 +58,9 @@ const Products = () => {
                      <button className="btn btn-outline-dark " onClick={()=>filteringProducts("electronics")}>Electronics</button>
                    </div>
                    {
-                       filterData.map((product)=><Product key={product.id} product={product}/>)
+                       searchProducts? searchProducts.map((product)=><Product key={product.id} product={product}/>)     :
+                        filterData.map((product)=><Product key={product.id} product={product}/>)
+                    
                    }
                    </>
                 }
